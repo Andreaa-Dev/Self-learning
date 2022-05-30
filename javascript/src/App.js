@@ -1,10 +1,11 @@
 import "./App.css";
-import ThemeContextComponent from "./component/themeContext/ThemeContextComponent";
+
+import NavBar from "./component/themeContext/NavBar";
 
 function App() {
   return (
     <div>
-      <ThemeContextComponent />
+      <NavBar />
     </div>
   );
 }

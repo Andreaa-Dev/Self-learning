@@ -7,19 +7,21 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 
-import { ThemeContext } from "./ThemeContextComponent";
+import { ThemeContext, themes } from "./ThemeContextComponent";
 import SwitchThemeButton from "./SwitchThemeButton";
 
 export default function NavBar() {
-  const theme = useContext(ThemeContext);
+  const { currentTheme } = useContext(ThemeContext);
+  const color = themes[currentTheme];
+  console.log(color, "c");
+
   return (
     <Box
       sx={{
         flexGrow: 1,
-        backgroundColor: theme.foreground,
       }}
     >
-      <AppBar position="static">
+      <AppBar position="static" sx={{ backgroundColor: color.background }}>
         <Toolbar>
           <IconButton
             size="large"
@@ -33,7 +35,7 @@ export default function NavBar() {
           <Typography
             variant="h6"
             component="div"
-            sx={{ flexGrow: 1, backgroundColor: theme.foreground }}
+            sx={{ flexGrow: 1, backgroundColor: color.background }}
           >
             News
           </Typography>

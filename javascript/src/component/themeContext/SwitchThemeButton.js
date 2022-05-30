@@ -1,7 +1,9 @@
-import * as React from "react";
+import React, { useContext } from "react";
 import { styled } from "@mui/material/styles";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
+
+import { ThemeContext } from "../themeContext/ThemeContextComponent";
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
@@ -51,9 +53,18 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 }));
 
 export default function SwitchThemeButton() {
+  const { currentTheme, setCurrentTheme } = useContext(ThemeContext);
+  const onClickHandler = () => {
+    if (currentTheme === "light") {
+      setCurrentTheme("dark");
+      return;
+    }
+    setCurrentTheme("light");
+  };
   return (
     <FormControlLabel
       control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked />}
+      onClick={onClickHandler}
     />
   );
 }
