@@ -4,15 +4,21 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import ErrorBoundary from "../src/ErrorHandler";
+import { Provider } from "react-redux";
+
 import ThemeContextComponent from "./component/themeContext/ThemeContextComponent";
+import makeStore from "./component/redux/store";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+const store = makeStore();
 root.render(
   <React.StrictMode>
     <ErrorBoundary>
-      <ThemeContextComponent>
-        <App />
-      </ThemeContextComponent>
+      <Provider store={store}>
+        <ThemeContextComponent>
+          <App />
+        </ThemeContextComponent>
+      </Provider>
     </ErrorBoundary>
   </React.StrictMode>
 );

@@ -13,7 +13,6 @@ import SwitchThemeButton from "./SwitchThemeButton";
 export default function NavBar() {
   const { currentTheme } = useContext(ThemeContext);
   const color = themes[currentTheme];
-  console.log(color, "c");
 
   return (
     <Box
