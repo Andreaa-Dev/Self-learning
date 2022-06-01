@@ -1,4 +1,4 @@
-import { FetchCountry, SearchCountry } from "../type";
+import { FetchCountry, FetchCountryDetail, SearchCountry } from "../type";
 
 export function fetchCountry(country) {
   return {
@@ -9,11 +9,11 @@ export function fetchCountry(country) {
   };
 }
 
-export function fetchCountryDetail(country) {
+export function fetchCountryDetail(countryDetail) {
   return {
-    type: FetchCountry,
+    type: FetchCountryDetail,
     payload: {
-      country: country,
+      countryDetail: countryDetail,
     },
   };
 }
@@ -38,7 +38,7 @@ export function fetchData() {
 
 export function fetchDataDetail(name) {
   return (dispatch) => {
-    fetch(`https://restcountries.com/v3.1/all/{name}`)
+    fetch(`https://restcountries.com/v3.1/name/${name.name}`)
       .then((response) => response.json())
       .then((countryDetail) => dispatch(fetchCountryDetail(countryDetail)));
   };

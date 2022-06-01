@@ -1,8 +1,8 @@
-import { dividerClasses } from "@mui/material";
 import { Routes, Route } from "react-router-dom";
 
-import CountryTable from "./component/country/CountryTable";
 import NavBar from "./component/themeContext/NavBar";
+import CountryTable from "./component/country/CountryTable";
+import CountryDetail from "./component/country/CountryDetail";
 
 function App() {
   return (
@@ -10,6 +10,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<CountryTable />}></Route>
+        <Route path="/:name" element={<CountryDetail />}></Route>
       </Routes>
     </>
   );

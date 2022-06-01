@@ -1,4 +1,5 @@
-import { FetchCountry, SearchCountry } from "../type";
+import { fetchCountryDetail } from "../action/country";
+import { FetchCountry, FetchCountryDetail, SearchCountry } from "../type";
 
 const initialState = {
   country: [],
@@ -13,8 +14,13 @@ export default function country(state = initialState, action) {
         ...state,
         country: action.payload.country,
       };
+    case FetchCountryDetail:
+      console.log(action.payload, "action");
+      return {
+        ...state,
+        eachCountry: action.payload.countryDetail,
+      };
     case SearchCountry:
-      console.log(action.payload.userInput, "a");
       const filteredCountry = state.country.filter((country) => {
         return country.name.common
           .toLowerCase()

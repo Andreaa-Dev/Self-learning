@@ -5,7 +5,6 @@ import TableCell from "@mui/material/TableCell";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 export default function CountryTableBody({ countryData, countryFiltered }) {
-  console.log(countryData, "d", countryFiltered);
   let countryDataAll;
   if (countryFiltered.length === 0) {
     countryDataAll = countryData;
@@ -16,27 +15,24 @@ export default function CountryTableBody({ countryData, countryFiltered }) {
     <TableBody>
       {countryDataAll.map((country) => {
         const language = country.languages;
-        if (language) {
-          const countryLanguage = Object.values(language);
-          return (
-            <TableRow key={country.name.common}>
-              <TableCell> {country.name.common}</TableCell>
-              <TableCell align="left">
-                {country.capital ? country.capital[0] : "No capital"}
-              </TableCell>
-              <TableCell> {country.flag}</TableCell>
-              <TableCell>
-                {countryLanguage.map((language) => (
-                  <p>{language}</p>
-                ))}
-              </TableCell>
-              <TableCell> {country.population}</TableCell>
-              <TableCell>
-                <FavoriteBorderIcon />
-              </TableCell>
-            </TableRow>
-          );
-        }
+        return (
+          <TableRow key={country.name.common}>
+            <TableCell> {country.name.common}</TableCell>
+            <TableCell align="left">
+              {country.capital ? country.capital[0] : "No capital"}
+            </TableCell>
+            <TableCell> {country.flag}</TableCell>
+            <TableCell>
+              {language
+                ? Object.values(language).map((item) => <p>{item}</p>)
+                : "No language"}
+            </TableCell>
+            <TableCell> {country.population}</TableCell>
+            <TableCell>
+              <FavoriteBorderIcon />
+            </TableCell>
+          </TableRow>
+        );
       })}
     </TableBody>
   );
