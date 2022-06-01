@@ -5,6 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import ErrorBoundary from "../src/ErrorHandler";
 import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
 
 import ThemeContextComponent from "./component/themeContext/ThemeContextComponent";
 import makeStore from "./component/redux/store";
@@ -14,11 +15,13 @@ const store = makeStore();
 root.render(
   <React.StrictMode>
     <ErrorBoundary>
-      <Provider store={store}>
-        <ThemeContextComponent>
-          <App />
-        </ThemeContextComponent>
-      </Provider>
+      <BrowserRouter>
+        <Provider store={store}>
+          <ThemeContextComponent>
+            <App />
+          </ThemeContextComponent>
+        </Provider>
+      </BrowserRouter>
     </ErrorBoundary>
   </React.StrictMode>
 );

@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 import { ThemeContext, themes } from "./ThemeContextComponent";
 import SwitchThemeButton from "./SwitchThemeButton";
@@ -41,6 +42,7 @@ export default function NavBar() {
           </Typography>
           <Button color="inherit">Home</Button>
           <SearchComponent />
+          <FavoriteBorderIcon />
           <SwitchThemeButton />
         </Toolbar>
       </AppBar>

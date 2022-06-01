@@ -1,14 +1,17 @@
-import "./App.css";
-import CountryTable from "./component/country/CountryTable";
+import { dividerClasses } from "@mui/material";
+import { Routes, Route } from "react-router-dom";
 
+import CountryTable from "./component/country/CountryTable";
 import NavBar from "./component/themeContext/NavBar";
 
 function App() {
   return (
-    <div>
+    <>
       <NavBar />
-      <CountryTable />
-    </div>
+      <Routes>
+        <Route path="/" element={<CountryTable />}></Route>
+      </Routes>
+    </>
   );
 }
 

@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { styled, alpha } from "@mui/material/styles";
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
+
+import { searchCountry } from "../redux/action/country";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -45,10 +48,23 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
- onChangeHandler () => {
-
-}
 export default function SearchComponent() {
+  const [userInput, setUserInput] = useState("");
+
+  const onChangeHandler = (event) => {
+    const element = event.target.value;
+    console.log(element, "input");
+    setUserInput({
+      ...userInput,
+      element,
+    });
+  };
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(searchCountry(userInput));
+  }, [userInput, dispatch]);
+
   return (
     <div>
       <Search sx={{ marginRight: "10px" }}>
@@ -58,7 +74,7 @@ export default function SearchComponent() {
         <StyledInputBase
           placeholder="Search…"
           inputProps={{ "aria-label": "search" }}
-          onChange = {onChangeHandler}
+          onChange={onChangeHandler}
         />
       </Search>
     </div>

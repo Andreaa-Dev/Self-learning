@@ -10,7 +10,6 @@ export default function FetchData() {
     try {
       axios(url).then((response) => {
         let result = response.data;
-        console.log(result, "data");
         setData(result);
         return result;
       });
