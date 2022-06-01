@@ -9,6 +9,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 
 import { ThemeContext, themes } from "./ThemeContextComponent";
 import SwitchThemeButton from "./SwitchThemeButton";
+import SearchComponent from "./SearchComponent";
 
 export default function NavBar() {
   const { currentTheme } = useContext(ThemeContext);
@@ -36,9 +37,10 @@ export default function NavBar() {
             component="div"
             sx={{ flexGrow: 1, backgroundColor: color.background }}
           >
-            News
+            Country
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Button color="inherit">Home</Button>
+          <SearchComponent />
           <SwitchThemeButton />
         </Toolbar>
       </AppBar>
