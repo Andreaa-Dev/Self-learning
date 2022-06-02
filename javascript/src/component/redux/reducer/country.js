@@ -1,4 +1,3 @@
-import { fetchCountryDetail } from "../action/country";
 import { FetchCountry, FetchCountryDetail, SearchCountry } from "../type";
 
 const initialState = {
@@ -15,7 +14,6 @@ export default function country(state = initialState, action) {
         country: action.payload.country,
       };
     case FetchCountryDetail:
-      console.log(action.payload, "action");
       return {
         ...state,
         eachCountry: action.payload.countryDetail,

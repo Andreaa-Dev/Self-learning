@@ -18,6 +18,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { fetchDataDetail } from "../redux/action/country";
+import LoadingComponents from "../misc/LoadingComponents";
 
 export default function CountryDetail() {
   const params = useParams();
@@ -25,9 +26,7 @@ export default function CountryDetail() {
 
   const data = useSelector((state) => state.countryState.eachCountry);
 
-  console.log(data, "s");
   const countryDetail = data[0];
-  console.log(countryDetail, "c");
 
   useEffect(() => {
     dispatch(fetchDataDetail(params));
@@ -48,53 +47,55 @@ export default function CountryDetail() {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-
-  return (
-    <Card sx={{ maxWidth: 345, display: "flex", justifyContent: "center" }}>
-      <CardHeader
-        avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            {countryDetail.cca2}
-          </Avatar>
-        }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
-        title={countryDetail.name.common}
-        subheader={countryDetail.name.official}
-      />
-      <CardMedia
-        component="img"
-        height="194"
-        image={countryDetail.flags.png}
-        alt={countryDetail.name}
-      />
-      <CardContent>
-        <Typography variant="body2" color="text.secondary"></Typography>
-      </CardContent>
-      <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
-        <ExpandMore
-          expand={expanded}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </ExpandMore>
-      </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
+  if (countryDetail) {
+    return (
+      <Card sx={{ maxWidth: 345, display: "flex", justifyContent: "center" }}>
+        <CardHeader
+          avatar={
+            <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+              {countryDetail.cca2}
+            </Avatar>
+          }
+          action={
+            <IconButton aria-label="settings">
+              <MoreVertIcon />
+            </IconButton>
+          }
+          title={countryDetail.name.common}
+          subheader={countryDetail.name.official}
+        />
+        <CardMedia
+          component="img"
+          height="194"
+          image={countryDetail.flags.png}
+          alt={countryDetail.name}
+        />
         <CardContent>
-          <Typography paragraph>Method:</Typography>
+          <Typography variant="body2" color="text.secondary"></Typography>
         </CardContent>
-      </Collapse>
-    </Card>
-  );
+        <CardActions disableSpacing>
+          <IconButton aria-label="add to favorites">
+            <FavoriteIcon />
+          </IconButton>
+          <IconButton aria-label="share">
+            <ShareIcon />
+          </IconButton>
+          <ExpandMore
+            expand={expanded}
+            onClick={handleExpandClick}
+            aria-expanded={expanded}
+            aria-label="show more"
+          >
+            <ExpandMoreIcon />
+          </ExpandMore>
+        </CardActions>
+        <Collapse in={expanded} timeout="auto" unmountOnExit>
+          <CardContent>
+            <Typography paragraph>Method:</Typography>
+          </CardContent>
+        </Collapse>
+      </Card>
+    );
+  }
+  return <LoadingComponents />;
 }

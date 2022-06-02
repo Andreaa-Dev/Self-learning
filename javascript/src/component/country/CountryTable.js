@@ -9,7 +9,9 @@ import CountryTableHead from "./CountryTableHead";
 import CountryTableBody from "./CountryTableBody";
 
 export default function CountryTable() {
+  //250 countries
   const countryData = useSelector((state) => state.countryState.country);
+  // result from search
   const countryFiltered = useSelector((state) => state.countryState.search);
 
   const dispatch = useDispatch();
