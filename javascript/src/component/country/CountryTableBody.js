@@ -1,23 +1,44 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import { styled } from "@mui/material/styles";
 import TableBody from "@mui/material/TableBody";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
+import { addFavoriteCountry } from "../redux/action/favorite";
+
+const CustomizedLink = styled(Link)`
+  text-decoration: none;
+  color: black;
+`;
+
 export default function CountryTableBody({ countryData, countryFiltered }) {
+  const dispatch = useDispatch();
+
   let countryDataAll;
   if (countryFiltered.length === 0) {
     countryDataAll = countryData;
   } else {
     countryDataAll = countryFiltered;
   }
+
+  const onClickHandler = (favoriteCountry) => {
+    dispatch(addFavoriteCountry(favoriteCountry));
+  };
+
   return (
     <TableBody>
       {countryDataAll.map((country) => {
         const language = country.languages;
         return (
           <TableRow key={country.name.common}>
-            <TableCell> {country.name.common}</TableCell>
+            <TableCell>
+              <CustomizedLink to={`/${country.name.common}`}>
+                {country.name.common}
+              </CustomizedLink>
+            </TableCell>
             <TableCell align="left">
               {country.capital ? country.capital[0] : "No capital"}
             </TableCell>
@@ -29,7 +50,7 @@ export default function CountryTableBody({ countryData, countryFiltered }) {
             </TableCell>
             <TableCell> {country.population}</TableCell>
             <TableCell>
-              <FavoriteBorderIcon />
+              <FavoriteBorderIcon onClick={() => onClickHandler(country)} />
             </TableCell>
           </TableRow>
         );

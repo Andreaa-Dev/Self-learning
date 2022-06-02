@@ -27,7 +27,7 @@ export default function CountryDetail() {
   const data = useSelector((state) => state.countryState.eachCountry);
 
   const countryDetail = data[0];
-
+  console.log(countryDetail, "d");
   useEffect(() => {
     dispatch(fetchDataDetail(params));
   }, [params, dispatch]);
@@ -49,7 +49,7 @@ export default function CountryDetail() {
   };
   if (countryDetail) {
     return (
-      <Card sx={{ maxWidth: 345, display: "flex", justifyContent: "center" }}>
+      <Card sx={{ maxWidth: 345 }}>
         <CardHeader
           avatar={
             <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">

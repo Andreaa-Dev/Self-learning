@@ -1,4 +1,8 @@
-import { FetchCountry, FetchCountryDetail, SearchCountry } from "../type";
+import {
+  FetchCountry,
+  FetchCountryDetail,
+  SearchCountry,
+} from "../action/country";
 
 const initialState = {
   country: [],

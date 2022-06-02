@@ -13,6 +13,9 @@ const initState = {
     search: [],
     eachCountry: [],
   },
+  favoriteCountry: {
+    favoriteCountry: [],
+  },
 };
 
 export default function makeStore(initialState = initState) {
@@ -30,6 +33,8 @@ export default function makeStore(initialState = initState) {
     initialState,
     composeEnhancers(applyMiddleware(...middlewares))
   );
+
+  // webpack:
   if (module.hot) {
     module.hot.accept("./reducer", () => {
       const nextReducer = require("./reducer").default;
