@@ -27,7 +27,6 @@ export default function CountryDetail() {
   const data = useSelector((state) => state.countryState.eachCountry);
 
   const countryDetail = data[0];
-  console.log(countryDetail, "d");
   useEffect(() => {
     dispatch(fetchDataDetail(params));
   }, [params, dispatch]);

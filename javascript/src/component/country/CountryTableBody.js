@@ -6,6 +6,7 @@ import TableBody from "@mui/material/TableBody";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import { v4 as uuidv4 } from "uuid";
 
 import { addFavoriteCountry } from "../redux/action/favorite";
 
@@ -45,7 +46,9 @@ export default function CountryTableBody({ countryData, countryFiltered }) {
             <TableCell> {country.flag}</TableCell>
             <TableCell>
               {language
-                ? Object.values(language).map((item) => <p>{item}</p>)
+                ? Object.values(language).map((item) => (
+                    <p key={uuidv4()}>{item}</p>
+                  ))
                 : "No language"}
             </TableCell>
             <TableCell> {country.population}</TableCell>
