@@ -4,16 +4,15 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import Badge from "@mui/material/Badge";
-
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 import { ThemeContext, themes } from "./ThemeContextComponent";
 import SwitchThemeButton from "./SwitchThemeButton";
 import SearchComponent from "./SearchComponent";
+import { CustomizedLink } from "../country/CountryTableBody";
 
 export default function NavBar() {
   const { currentTheme } = useContext(ThemeContext);
@@ -48,11 +47,18 @@ export default function NavBar() {
           >
             Country
           </Typography>
-          <Button color="inherit">Home</Button>
+          <CustomizedLink to="">HOME</CustomizedLink>
           <SearchComponent />
-          <Badge badgeContent={favoriteCount} color="primary">
-            <FavoriteBorderIcon />
-          </Badge>
+          <CustomizedLink to="./favorite">
+            <Badge
+              badgeContent={favoriteCount}
+              color="primary"
+              sx={{ marginRight: "10px" }}
+            >
+              <FavoriteBorderIcon />
+            </Badge>
+          </CustomizedLink>
+
           <SwitchThemeButton />
         </Toolbar>
       </AppBar>

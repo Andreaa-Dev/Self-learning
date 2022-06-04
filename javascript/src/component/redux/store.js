@@ -28,13 +28,37 @@ export default function makeStore(initialState = initState) {
     }
   }
 
+  //store favorite countries to local storage
+  //get data to local storage
+  let favoriteObject = localStorage.getItem("favoriteItem");
+
+  let finalState;
+  if (favoriteObject) {
+    let stored = JSON.parse(favoriteObject);
+    console.log("stoted", stored);
+    initState.favoriteCountry.favoriteCountry = stored;
+    finalState = initState;
+  } else {
+    finalState = initState;
+  }
+
   const store = createStore(
     createRootReducer(),
-    initialState,
+    finalState,
     composeEnhancers(applyMiddleware(...middlewares))
   );
 
-  // webpack:
+  // each dispatch an action => run
+  // all thing put in localStorage had to be string
+  store.subscribe(() => {
+    const state = store.getState();
+    localStorage.setItem(
+      "favoriteItem",
+      JSON.stringify(state.favoriteCountry.favoriteCountry)
+    );
+  });
+
+  // webpack
   if (module.hot) {
     module.hot.accept("./reducer", () => {
       const nextReducer = require("./reducer").default;

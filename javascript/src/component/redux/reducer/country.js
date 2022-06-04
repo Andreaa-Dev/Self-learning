@@ -23,10 +23,11 @@ export default function country(state = initialState, action) {
         eachCountry: action.payload.countryDetail,
       };
     case SearchCountry:
+      console.log("run", state.country);
       const filteredCountry = state.country.filter((country) => {
         return country.name.common
           .toLowerCase()
-          .includes(action.payload.userInput.element.toLowerCase());
+          .includes(action.payload.userInput.toLowerCase());
       });
       return {
         ...state,

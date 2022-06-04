@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { styled, alpha } from "@mui/material/styles";
 import SearchIcon from "@mui/icons-material/Search";
@@ -49,21 +49,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function SearchComponent() {
-  const [userInput, setUserInput] = useState("");
+  const dispatch = useDispatch();
 
   const onChangeHandler = (event) => {
-    const element = event.target.value;
-    console.log(element, "input");
-    setUserInput({
-      ...userInput,
-      element,
-    });
+    dispatch(searchCountry(event.target.value));
   };
-
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(searchCountry(userInput));
-  }, [userInput, dispatch]);
 
   return (
     <div>

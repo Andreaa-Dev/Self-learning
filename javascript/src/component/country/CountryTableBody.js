@@ -9,7 +9,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 import { addFavoriteCountry } from "../redux/action/favorite";
 
-const CustomizedLink = styled(Link)`
+export const CustomizedLink = styled(Link)`
   text-decoration: none;
   color: black;
 `;
