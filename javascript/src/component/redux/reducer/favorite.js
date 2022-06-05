@@ -7,7 +7,6 @@ const initialState = {
 export default function favorite(state = initialState, action) {
   switch (action.type) {
     case AddFavoriteCountry: {
-      console.log(state.favoriteCountry, "s");
       return {
         ...state,
         favoriteCountry: [
@@ -17,10 +16,14 @@ export default function favorite(state = initialState, action) {
       };
     }
     case RemoveFavoriteCountry: {
-      const countriesRemoved = action.payload;
+      const selectedCountries = action.payload.favoriteCountry;
+      const favoriteCountries = state.favoriteCountry;
+      const result = favoriteCountries.filter(
+        (item) => item.name.common !== selectedCountries.name.common
+      );
       return {
         ...state,
-        favoriteCountry: countriesRemoved,
+        favoriteCountry: result,
       };
     }
     default:

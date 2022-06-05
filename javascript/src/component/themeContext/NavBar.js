@@ -12,7 +12,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { ThemeContext, themes } from "./ThemeContextComponent";
 import SwitchThemeButton from "./SwitchThemeButton";
 import SearchComponent from "./SearchComponent";
-import { CustomizedLink } from "../country/CountryTableBody";
+import { CustomizedLink } from "../country/CountryTableRow";
 
 export default function NavBar() {
   const { currentTheme } = useContext(ThemeContext);

@@ -1,9 +1,15 @@
 import React from "react";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import Box from "@mui/material/Box";
+import { useDispatch } from "react-redux";
+import { removeFavoriteCountry } from "../redux/action/favorite";
 
 export default function CountryFavoriteCard({ favoriteCountry }) {
-  console.log(favoriteCountry, "d");
+  const dispatch = useDispatch();
+
+  const onClickHandler = () => {
+    dispatch(removeFavoriteCountry(favoriteCountry));
+  };
   return (
     <Box
       sx={{
@@ -16,7 +22,7 @@ export default function CountryFavoriteCard({ favoriteCountry }) {
       <div> Name: {favoriteCountry.name.common}</div>
 
       <div>
-        <RemoveCircleOutlineIcon />
+        <RemoveCircleOutlineIcon onClick={onClickHandler} />
       </div>
     </Box>
   );
