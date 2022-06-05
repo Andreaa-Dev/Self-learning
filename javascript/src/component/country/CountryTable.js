@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchData } from "../redux/action/country";
 import CountryTableHead from "./CountryTableHead";
 import CountryTableBody from "./CountryTableBody";
+import LoadingComponents from "../misc/LoadingComponent";
 
 export default function CountryTable() {
   //250 countries
@@ -19,6 +20,9 @@ export default function CountryTable() {
     dispatch(fetchData());
   }, [dispatch]);
 
+  if (countryData.length === 0) {
+    return <LoadingComponents />;
+  }
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">

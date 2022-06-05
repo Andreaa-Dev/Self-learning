@@ -18,7 +18,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { fetchDataDetail } from "../redux/action/country";
-import LoadingComponents from "../misc/LoadingComponents";
+import LoadingComponents from "../misc/LoadingComponent";
 
 export default function CountryDetail() {
   const params = useParams();
