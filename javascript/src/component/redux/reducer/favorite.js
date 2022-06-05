@@ -16,13 +16,13 @@ export default function favorite(state = initialState, action) {
         ],
       };
     }
-    // case RemoveFavoriteCountry: {
-    //   const countriesRemoved = action.payload;
-    //   return {
-    //     ...state,
-    //     favoriteCountry: countriesRemoved,
-    //   };
-    // }
+    case RemoveFavoriteCountry: {
+      const countriesRemoved = action.payload;
+      return {
+        ...state,
+        favoriteCountry: countriesRemoved,
+      };
+    }
     default:
       return state;
   }
