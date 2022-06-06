@@ -7,6 +7,7 @@ import thunk from "redux-thunk";
 
 import createRootReducer from "./reducer";
 
+//whole app
 const initState = {
   countryState: {
     country: [],

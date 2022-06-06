@@ -4,6 +4,7 @@ import {
   SearchCountry,
 } from "../action/country";
 
+//country -state
 const initialState = {
   country: [],
   search: [],

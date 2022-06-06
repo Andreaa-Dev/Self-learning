@@ -1,5 +1,6 @@
 import { AddFavoriteCountry, RemoveFavoriteCountry } from "../action/favorite";
 
+//fav country - state
 const initialState = {
   favoriteCountry: [],
 };

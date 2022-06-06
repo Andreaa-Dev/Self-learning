@@ -23,6 +23,7 @@ export default function CountryTable() {
   if (countryData.length === 0) {
     return <LoadingComponents />;
   }
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
