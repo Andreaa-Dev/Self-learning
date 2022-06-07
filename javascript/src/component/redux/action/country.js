@@ -1,6 +1,7 @@
 export const FetchCountry = "fetch_country";
 export const FetchCountryDetail = "fetch_country_detail";
 export const SearchCountry = "search_country";
+export const SortCountryByName = "sort_country_by_name";
 
 //action 1: fetch data
 export function fetchCountry(country) {
@@ -26,6 +27,15 @@ export function searchCountry(input) {
     type: SearchCountry,
     payload: {
       userInput: input,
+    },
+  };
+}
+
+export function sortCountryByName(orderBy) {
+  return {
+    type: SortCountryByName,
+    payload: {
+      orderBy: orderBy,
     },
   };
 }

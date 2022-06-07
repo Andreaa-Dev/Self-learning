@@ -2,6 +2,7 @@ import {
   FetchCountry,
   FetchCountryDetail,
   SearchCountry,
+  SortCountryByName,
 } from "../action/country";
 
 //country -state
@@ -33,6 +34,35 @@ export default function country(state = initialState, action) {
         ...state,
         search: filteredCountry,
       };
+    case SortCountryByName: {
+      const countriesData = state.country;
+      const sortBy = action.payload;
+
+      const sortedCountries = countriesData.sort((a, b) => {
+        console.log("run");
+        if (a.name.common < b.name.common) {
+          if (sortBy === "asc") {
+            return -1;
+          }
+
+          return 1;
+        }
+        if (a.name.common > b.name.common) {
+          if (sortBy === "desc") {
+            return 1;
+          }
+
+          return -1;
+        }
+        return 0;
+      });
+
+      console.log("sort", sortedCountries);
+      return {
+        ...state,
+        country: [...sortedCountries],
+      };
+    }
     default:
       return state;
   }
