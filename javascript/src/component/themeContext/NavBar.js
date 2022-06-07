@@ -13,6 +13,7 @@ import { ThemeContext, themes } from "./ThemeContextComponent";
 import SwitchThemeButton from "./SwitchThemeButton";
 import SearchComponent from "./SearchComponent";
 import { CustomizedLink } from "../country/CountryTableRow";
+import Test1 from "./Test1";
 
 export default function NavBar() {
   const { currentTheme } = useContext(ThemeContext);
@@ -58,8 +59,8 @@ export default function NavBar() {
               <FavoriteBorderIcon />
             </Badge>
           </CustomizedLink>
-
           <SwitchThemeButton />
+          <Test1 />
         </Toolbar>
       </AppBar>
     </Box>
