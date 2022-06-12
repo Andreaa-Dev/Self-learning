@@ -52,6 +52,8 @@ export default function SearchComponent() {
   const dispatch = useDispatch();
 
   const onChangeHandler = (event) => {
+    //userInput
+    console.log(event.target.value);
     dispatch(searchCountry(event.target.value));
   };
 

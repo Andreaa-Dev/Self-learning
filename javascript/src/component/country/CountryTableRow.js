@@ -16,10 +16,12 @@ export const CustomizedLink = styled(Link)`
   text-decoration: none;
   color: black;
 `;
+
 export default function CountryTableRow({ country }) {
   const language = country.languages;
   const dispatch = useDispatch();
 
+  //to check if country in favorite countries
   const itemExist = useSelector((state) =>
     state.favoriteCountry.favoriteCountry.some((item) => {
       return item.name.common === country.name.common;

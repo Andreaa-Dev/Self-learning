@@ -3,6 +3,7 @@ export const FetchCountryDetail = "fetch_country_detail";
 export const SearchCountry = "search_country";
 export const SortCountryByName = "sort_country_by_name";
 
+// write to do action
 //action 1: fetch data
 export function fetchCountry(country) {
   return {

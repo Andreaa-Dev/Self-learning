@@ -5,7 +5,7 @@ import {
   SortCountryByName,
 } from "../action/country";
 
-//country -state
+//country -state - search and each country need country information - same file
 const initialState = {
   country: [],
   search: [],
@@ -38,14 +38,14 @@ export default function country(state = initialState, action) {
       const countriesData = state.country;
       const sortBy = action.payload;
 
-      const sortedCountries = countriesData.sort((a, b) => {
+      const sortedCountries = state.country.sort((a, b) => {
         console.log("run");
         if (a.name.common < b.name.common) {
           if (sortBy === "asc") {
-            return -1;
+            return 1;
           }
 
-          return 1;
+          return -1;
         }
         if (a.name.common > b.name.common) {
           if (sortBy === "desc") {
