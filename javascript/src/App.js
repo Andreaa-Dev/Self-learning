@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 
-import NavBar from "./component/themeContext/NavBar";
+import NavBar from "./component/nav/NavBar";
 import CountryTable from "./component/country/CountryTable";
 import CountryDetail from "./component/country/CountryDetail";
 import CountryFavorite from "./component/country/CountryFavorite";

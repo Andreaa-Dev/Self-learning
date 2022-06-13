@@ -3,6 +3,7 @@ import {
   FetchCountryDetail,
   SearchCountry,
   SortCountryByName,
+  SortCountryByPopulation,
 } from "../action/country";
 
 //country -state - search and each country need country information - same file
@@ -34,35 +35,54 @@ export default function country(state = initialState, action) {
         ...state,
         search: filteredCountry,
       };
-    case SortCountryByName: {
-      const countriesData = state.country;
-      const sortBy = action.payload;
+    case SortCountryByPopulation: {
+      const sortBy = action.payload.orderBy;
+      console.log("sortBy", sortBy);
 
-      const sortedCountries = state.country.sort((a, b) => {
-        console.log("run");
-        if (a.name.common < b.name.common) {
-          if (sortBy === "asc") {
-            return 1;
-          }
-
-          return -1;
+      const sortedCountries = state.country.slice().sort((a, b) => {
+        if (sortBy === "asc") {
+          return a.population - b.population;
         }
-        if (a.name.common > b.name.common) {
-          if (sortBy === "desc") {
-            return 1;
-          }
 
-          return -1;
+        if (sortBy === "desc") {
+          return b.population - a.population;
         }
+
         return 0;
       });
 
-      console.log("sort", sortedCountries);
       return {
         ...state,
-        country: [...sortedCountries],
+        country: sortedCountries,
       };
     }
+    case SortCountryByName: {
+      const sortBy = action.payload.orderBy;
+
+      const sortedCountries = state.country.slice().sort((a, b) => {
+        if (a.name.common > b.name.common) {
+          if (sortBy === "asc") {
+            return 1;
+          }
+          return -1;
+        }
+
+        if (a.name.common < b.name.common) {
+          if (sortBy === "desc") {
+            return 1;
+          }
+          return -1;
+        }
+
+        return 0;
+      });
+
+      return {
+        ...state,
+        country: sortedCountries,
+      };
+    }
+
     default:
       return state;
   }

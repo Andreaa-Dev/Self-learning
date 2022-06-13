@@ -1,29 +1,36 @@
-import React, { useContext } from "react";
-import { useSelector } from "react-redux";
+import React, { useContext, useState } from "react";
+import { useDispatch } from "react-redux";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import Badge from "@mui/material/Badge";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
-import { ThemeContext, themes } from "./ThemeContextComponent";
+import { ThemeContext, themes } from "../themeContext/ThemeContextComponent";
+import { CustomizedLink } from "../country/CountryTableRow";
 import SwitchThemeButton from "./SwitchThemeButton";
 import SearchComponent from "./SearchComponent";
-import { CustomizedLink } from "../country/CountryTableRow";
-import Test1 from "./Test1";
+import FilterByPopulation from "./FilterByPopulation";
+import FavoriteComponent from "./FavoriteComponent";
+import { sortCountryByName } from "../redux/action/country";
 
 export default function NavBar() {
   const { currentTheme } = useContext(ThemeContext);
   const color = themes[currentTheme];
+  //sort
+  const [orderBy, setOrderBy] = useState("desc");
 
-  const favoriteCountries = useSelector(
-    (state) => state.favoriteCountry.favoriteCountry
-  );
-  const favoriteCount = favoriteCountries.length;
-
+  const dispatch = useDispatch();
+  const onClickSortHandler = () => {
+    if (orderBy === "asc") {
+      setOrderBy("desc");
+      dispatch(sortCountryByName("desc"));
+    } else {
+      setOrderBy("asc");
+      dispatch(sortCountryByName("asc"));
+    }
+  };
   return (
     <Box
       sx={{
@@ -50,17 +57,10 @@ export default function NavBar() {
           </Typography>
           <CustomizedLink to="">HOME</CustomizedLink>
           <SearchComponent />
-          <CustomizedLink to="./favorite">
-            <Badge
-              badgeContent={favoriteCount}
-              color="primary"
-              sx={{ marginRight: "10px" }}
-            >
-              <FavoriteBorderIcon />
-            </Badge>
-          </CustomizedLink>
+          <FavoriteComponent />
+          <FilterByPopulation />
+          <button onClick={onClickSortHandler}> Sort name</button>
           <SwitchThemeButton />
-          <Test1 />
         </Toolbar>
       </AppBar>
     </Box>

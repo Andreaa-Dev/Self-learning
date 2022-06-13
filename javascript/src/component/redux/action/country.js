@@ -1,6 +1,7 @@
 export const FetchCountry = "fetch_country";
 export const FetchCountryDetail = "fetch_country_detail";
 export const SearchCountry = "search_country";
+export const SortCountryByPopulation = "sort_country_by_population";
 export const SortCountryByName = "sort_country_by_name";
 
 // write to do action
@@ -32,6 +33,15 @@ export function searchCountry(input) {
   };
 }
 
+export function sortCountryByPopulation(orderBy) {
+  return {
+    type: SortCountryByPopulation,
+    payload: {
+      orderBy: orderBy,
+    },
+  };
+}
+
 export function sortCountryByName(orderBy) {
   return {
     type: SortCountryByName,
@@ -40,7 +50,6 @@ export function sortCountryByName(orderBy) {
     },
   };
 }
-
 //redux-thunk
 export function fetchData() {
   return (dispatch) => {

@@ -37,7 +37,6 @@ export default function makeStore(initialState = initState) {
 
   if (favoriteObject) {
     let stored = JSON.parse(favoriteObject);
-    console.log("stored", stored);
     initState.favoriteCountry.favoriteCountry = stored;
     finalState = initState;
   } else {

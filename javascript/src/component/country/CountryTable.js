@@ -25,7 +25,6 @@ export default function CountryTable() {
   }
 
   //sort
-
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
