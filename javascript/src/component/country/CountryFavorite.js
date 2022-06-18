@@ -4,9 +4,10 @@ import CountryFavoriteCard from "./CountryFavoriteCard";
 import { v4 as uuidv4 } from "uuid";
 
 export default function CountryFavorite() {
-  const favoriteCountryData = useSelector(
-    (state) => state.favoriteCountry.favoriteCountry
-  );
+  const favoriteCountryData = useSelector((state) => {
+    console.log(favoriteCountryData, "f");
+    return state.favoriteCountry.favoriteCountry;
+  });
 
   if (favoriteCountryData.length === 0) {
     return <div>No favorite countries</div>;
